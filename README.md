@@ -10,7 +10,7 @@
 
 2. 결과물 제출
 * 스테이지 작업이 모두 끝났다면 원본 레포지토지의 `main` 브랜치로 **Pull Request** 합니다.
- > PR 제목 양식: **[TeamN] N스테이지 완성**
+    > PR 제목 양식: **[TeamN] N스테이지 완성**
 
 **2. 유니티 가이드**
 
@@ -20,11 +20,11 @@
 * Game 탭의 해상도는 **QHD**(`2560 x 1440`)로 통일합니다.
 * `Canvas`를 사용해야 하는 상황이라면 Render Mode를 `World Space`로 설정합니다.
 * 팀이 새로 생성한 모든 스크립트에는 아래와 같이 `namespace`를 적용합니다.
-  ```csharp
+    ```csharp
 	namespace TeamN {
 	    public class NewScript : MonoBehaviour { ... }
 	}
-	```
+    ```
 
 **3. 작업 가이드**
 * 팀의 목표는 전체 게임의 스테이지 하나를 완성하는 것입니다.
