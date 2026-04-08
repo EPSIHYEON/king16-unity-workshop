@@ -4,15 +4,35 @@ using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>
 {
-    public GameObject gameOverCanvas;
-    public GameObject gameClearCanvas;
+    private GameObject _gameOverCanvas;
+    private GameObject _gameClearCanvas;
 
     private readonly List<int> _stageList = new List<int>();
     private const int TotalStageCount = 1;
     
     private void Start()
     {
+        InitCanvas();
         InitStageList();
+    }
+    
+    void InitCanvas()
+    {
+        if (_gameOverCanvas == null)
+        {
+            Transform overTransform = transform.Find("GameOver_Canvas");
+            if (overTransform != null) _gameOverCanvas = overTransform.gameObject;
+        }
+
+        if (_gameClearCanvas == null)
+        {
+            Transform clearTransform = transform.Find("GameClear_Canvas");
+            if (clearTransform != null) _gameClearCanvas = clearTransform.gameObject;
+        }
+
+        // 초기 상태는 비활성화
+        if (_gameOverCanvas != null) _gameOverCanvas.SetActive(false);
+        if (_gameClearCanvas != null) _gameClearCanvas.SetActive(false);
     }
 
     void InitStageList()
@@ -45,12 +65,12 @@ public class GameManager : Singleton<GameManager>
     public void OnGameOver()
     {
         Time.timeScale = 0f;
-        gameOverCanvas.SetActive(true);
+        _gameOverCanvas.SetActive(true);
     }
 
     public void RestartGame()
     {
-        gameOverCanvas.SetActive(false);
+        _gameOverCanvas.SetActive(false);
         InitStageList(); 
         LoadNextRandomStage();
     }
@@ -58,6 +78,6 @@ public class GameManager : Singleton<GameManager>
     void ShowGameClear()
     {
         Time.timeScale = 0f;
-        gameClearCanvas.SetActive(true);
+        _gameClearCanvas.SetActive(true);
     }
 }
