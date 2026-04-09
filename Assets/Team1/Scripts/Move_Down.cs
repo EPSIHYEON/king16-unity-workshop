@@ -4,15 +4,15 @@ namespace Team1
 {
     public class Move_Down : MonoBehaviour
     {
-        public GameObject block;      // 내려갈 블록 (인스펙터에서 할당)
+        public GameObject block;      // 내려갈 블록
         public float speed;           // 내려가는 속도
         private bool isFalling = false;
 
-        // 2D 환경에서는 OnCollisionEnter2D를 사용합니다.
-        private void OnCollisionEnter2D(Collision2D collision)
+        // isTrigger가 체크되어 있다면 이 함수가 실행됩니다.
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            // [중요] collision이 아니라 collision.gameObject의 태그를 확인해야 합니다.
-            if (collision.gameObject.CompareTag("Player"))
+            // Trigger에서는 'other'가 부딪힌 상대방의 Collider입니다.
+            if (other.CompareTag("Player"))
             {
                 isFalling = true;
             }
